@@ -1,7 +1,7 @@
 # Prueba Blas Muñoz Sagredo
 En esta solucion se implemento el Nivel 3, de lo enviado por lo que este programa es un Servicio Rest hecho en Spring Boot que consume la Api Rest GDD. Se adjunta en el folder JSON un ejemplo del response de esta API. 
 
-###Instalacion y Ejecución 
+### Instalacion y Ejecución 
 Para la instalación se requiere maven y Java instalado. Una vez clonado el proyecto desde git, Ingresar al directorio *periodos-perdidos* y ejecutar 
 
 ```bash
