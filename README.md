@@ -1,134 +1,191 @@
-<p align="center">
-  <img src="LogoTC.jpg" width="180" title="Tech Consult">
-</p>
+# Obtener fechas faltantes a partir de la respuesta del generador de datos.
 
-# Desafío 1: Periodos perdidos
+Este proyecto expone un API REST que entrega la siguiente información:
 
-El desafío consiste en lo siguiente:
-
--   Existe un servicio REST que llamaremos Generador De Datos o GDD.
-    -   El servicio responde con una lista de fechas generadas aleatoriamente. Estas fechas se encuentran en un lapso definidos por dos valores: fechaCreacion y fechaFin.
-    -   Cada fecha generada corresponde al primer día de un mes.
-    -   La respuesta contienen un máximo de 100 fechas. 
-    -   El servicio no entrega todas las fechas dentro del periodo, omite algunas de forma también aleatoria.
--   El objetivo de este ejercicio es que determines cuáles son los periodos que faltan.
-
-Este es un ejemplo de la respuesta que entrega este servicio:
+*fechaCreacion*: Fecha de inicio de la secuencia <br>
+*fechaFin*: Fecha de fin de la secuencia <br>
+*fechas*: Lista de fechas que están en el rango de la fecha que se encuentra en “fechaCreacion” hasta la fecha “fechaFin” <br>
+*fechas faltantes*: Fechas que debío entregar el generador de datos pero no entrego <br><br>
+Ejemplo.
 
 ```json
 {
-    "id": 6,
-    "fechaCreacion": "1968-08-01",
-    "fechaFin": "1971-06-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1971-05-01"]
+  "id": 1,
+  "fechaCreacion": "1997-01-07",
+  "fechaFin": "1998-01-07",
+  "fechas": [
+    "1984-08-01",
+    "1984-10-01",
+    "1985-01-01",
+    "1985-02-01",
+    "1985-11-01",
+    "1986-05-01",
+    "1986-07-01",
+    "1987-03-01",
+    "1987-05-01",
+    "1987-08-01",
+    "1988-03-01",
+    "1989-02-01",
+    "1989-05-01",
+    "1990-07-01",
+    "1990-09-01",
+    "1991-10-01",
+    "1992-06-01",
+    "1992-07-01",
+    "1993-06-01",
+    "1993-08-01",
+    "1993-09-01",
+    "1993-11-01",
+    "1994-04-01",
+    "1994-09-01",
+    "1995-01-01",
+    "1995-05-01",
+    "1995-07-01",
+    "1995-08-01",
+    "1996-01-01",
+    "1996-12-01",
+    "1997-01-01",
+    "1997-07-01",
+    "1997-08-01",
+    "1997-12-01",
+    "1998-01-01",
+    "1998-02-01",
+    "1998-05-01",
+    "1998-07-01",
+    "1999-04-01",
+    "1999-06-01",
+    "1999-11-01",
+    "2000-02-01",
+    "2000-04-01",
+    "2000-05-01",
+    "2000-09-01",
+    "2001-03-01",
+    "2001-11-01",
+    "2001-12-01",
+    "2002-01-01",
+    "2002-05-01",
+    "2002-10-01",
+    "2003-03-01",
+    "2003-04-01",
+    "2003-07-01",
+    "2003-09-01",
+    "2004-01-01",
+    "2004-07-01",
+    "2004-10-01",
+    "2004-12-01",
+    "2005-02-01",
+    "2005-03-01",
+    "2005-09-01",
+    "2005-10-01",
+    "2006-04-01",
+    "2006-07-01",
+    "2006-10-01",
+    "2007-03-01",
+    "2007-05-01",
+    "2007-09-01",
+    "2007-11-01",
+    "2008-03-01",
+    "2008-10-01",
+    "2009-04-01",
+    "2009-12-01",
+    "2010-02-01",
+    "2010-03-01",
+    "2010-04-01",
+    "2010-05-01",
+    "2010-07-01",
+    "2010-08-01",
+    "2010-11-01",
+    "2011-02-01",
+    "2011-08-01",
+    "2012-07-01",
+    "2012-12-01",
+    "2013-04-01",
+    "2013-05-01",
+    "2013-09-01",
+    "2013-11-01",
+    "2014-04-01",
+    "2014-05-01",
+    "2014-06-01",
+    "2014-07-01",
+    "2014-11-01",
+    "2015-09-01",
+    "2016-04-01",
+    "2016-06-01"
+  ],
+  "fechasFaltantes": [
+    "1997-02-01",
+    "1997-03-01",
+    "1997-04-01",
+    "1997-05-01",
+    "1997-06-01",
+    "1997-09-01",
+    "1997-10-01",
+    "1997-11-01"
+  ]
 }
 ```
+*Nota*:
+El formato de las fechas es yyyy-MM-dd
+El servicio entrega 1 periodos, el periodo contiene una fecha inicial una fecha final y una lista fechas.
 
-Acá se puede apreciar que el servicio generó fechas entre el 1 de agosto de 1968 y el 1 de junio de 1971. Sólo se generaron 4 fechas en este caso. 
-De acuerdo a esto, faltarían fechas, 5 de 1968, 9 fechas de 1969, 5 fechas de 1971, etc.
-Una versión del GDD se encuentra en este repositorio en GitHub:
-https://github.com/lmptechconsult/Generador_Datos_Desafio_Uno
+# Detalle de los sistemas
 
-El desafío puede ser resuelto de tres maneras distintas. 
-Tú eliges cuál es la que más te acomoda entre estos tres niveles:
+Swagger Codegen 2.3.1 (OpenApi 2.0) <br>
+Java 8 <br>
+Spring-Boot 1.5.11.RELEASE <br>
+Maven 3 <br>
 
-## Nivel 1: 
-    Crear un programa que recibe, a través de la entrada estándar, un archivo en formato Json con la estructura de la respuesta de servicio (como el ejemplo de arriba) y que entrega a través de la salida estándar, como respuesta, un archivo Json con las fechas faltantes.
-Ejemplo:
-    Se entrega un archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"]
-}
+# Configuracion
+
+Se debe modificar el archivo *ApiFaltantes/src/main/resources/application.properties* con la url del API generador de datos
+
+```bash
+api.destino.endpoint=http://localhost:8090/periodos/api
+```
+# Compilar y ejecutar el proyecto
+
+Para copilar el proyecto se requiere Java y Maven instalado.
+Ingresar al directorio *ApiFaltantes* ejecutar el siguiente comando *maven*
+
+```bash
+mvn package
 ```
 
-El programa debe responder con archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-}
+Luego de compilar el proyecto ingresar al directorio *target* ejecutar el siguiente comando *java*
+
+```bash
+java -jar .\api-desafio-1.0.0.jar
 ```
- 
-El programa se debe ejecutar de la siguiente manera:
-    $ mi_solucion < nombre_archivo_entrada > nombre_archivo_salida
+*Nota*:
+Debe estar disponible el puerto *8100* en el PC donde se ejecute esta API
 
-## Nivel 2:
+# Visualizar Documentación y consumir la API
 
-Construir un programa que invoque al servicio REST GDD y escriba como salida un archivo con las fechas, los periodos recibidos y la lista de periodos faltantes.
-Ejemplo:
+La documentación swagger del API (una vez que se levanta el API) queda disponible en
 
-```
-INVOCACION:
-    $ mi-solucion
-SALIDA (un archivo con el siguiente contenido) :
-      fecha creación: 2018-10-01
-         fecha fin: 2019-04-01
-         fechas recibidas: 2018-10-01, 2018-12-01, 2019-01-01, 2019-04-01
-        fechas faltantes: 2018-11-01, 2019-02-01, 2019-03-01
+http://127.0.0.1:8100/desafio/swagger-ui.html#/
+
+Para consumir el servicio se debe invocar la siguiente URL
+
+```bash
+curl -X GET --header 'Accept: application/json' 'http://127.0.0.1:8100/periodos/api?fechaInicio=1997-01-07&fechaFin=1998-01-07'
 ```
 
-## Nivel 3:
+# Regenerar API a partir de yaml
 
-Implementar un nuevo servicio REST. Este servicio REST debe invocar al servicio GDD y entregar la respuesta en formato JSON con las fechas recibidas y las fechas faltantes.
-Ejemplo de la respuesta que debería entregar:
+Las siguientes instrucciones solo son para re-escribir el API si es necesario agregar una nueva funcionalidad a partir del *YAML*.
 
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"],
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
+Bajar SwaggerCodeGen 2.3.1 en la raíz del proyecto, ejecutando el siguiente comando por consola.
 
-}
+```bash
+wget http://oss.sonatype.org/content/repositories/releases/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar -O swagger-codegen-cli.jar
 ```
 
-REQUISITOS:
--   Se pueden implementar las soluciones en cualquier lenguaje y framework. Aunque recomendamos usar: Java(con o sin Spring Boot), Go y Python.
--   La solución debe ser enviada vía un pull request a este repositorio.
--   La solución debe contener un README.md con las instrucciones para compilar e instalar.
--   Puedes implementar cualquiera de los 3 niveles, no es necesario implementar los 3.
--   Hay bonus si usas SWAGGER.
--   Junto con la solución debes entregar un archivo con la entrada y con la salida en formato JSON.
-- Por ultimo en el detalle del commit debes indicar los siguientes datos
-   - Nombre Completo.
-   - Correo Electrónico.
-   - Vía por la que te entérate del desafío. Estas pueden ser: Empresa de outsourcing (indicar cuál), twitter, LinkedIn, etc.
+Para re-crear el código a partir de la definición del *YAML* de swagger ejecutar el siguiente comando
 
+```bash
+java -jar .\swagger-codegen-cli.jar generate -i .\swagger\faltantes.yaml -l spring -c .\swagger\config.json -o ApiPeriodos --ignore-file-override .\.swagger-codegen-ignore
+```
 
-NOTA:
-Todos los pull reuqests serán rechazados, esto no quiere decir que ha sido rechazada la solución, sino que es una forma de que otros postulantes no copien tu código.
+*Nota*:
+Esto creara toda la estructura de swagger y re-escribirá todas las clases que no estén declaradas en el archivo *.swagger-codegen-ignore*

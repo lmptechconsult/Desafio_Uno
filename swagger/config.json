@@ -1,0 +1,16 @@
+{
+  "groupId"         : "com.previred.desafio",
+  "artifactId"      : "api-desafio",
+  "artifactVersion" : "1.0.0",
+  "artifactDescription" : "Micro Servicio para obtener los periodos faltantes",
+  
+  "basePackage"     : "com.previred.desafio",
+  "invokerPackage"  : "com.previred.desafio.swagger",
+  "apiPackage"      : "com.previred.desafio.swagger.codegen.api",
+  "modelPackage"    : "com.previred.desafio.swagger.codegen.model",
+  "configPackage"   : "com.previred.desafio.swagger.codegen.config",
+  "java8"           : true,
+  "title"           : "API Desafio",
+  "hideGenerationTimestamp" : true,
+  "library"         : "spring-boot"
+}
