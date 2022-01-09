@@ -6,6 +6,8 @@ Nivel: Se implementa nivel 3<br />
 
 <b>Instrucciones para realizar pruebas:</b>
 
+<b> Es necesario que el servicio de generación de datos esté arriba</b>
+
 <ul>
 	<li>Importar los fuentes desde el repositorio.</li>
 	<li>Compilar el servicio con: mvn clean install </li>
