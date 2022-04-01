@@ -1,12 +1,12 @@
-#Evaluación de Previred
+# Evaluación de Previred
 
-###Nombre: 
+### Nombre: 
 Roberto Salinas López 
-###Email: 
+### Email: 
 roberto.ismael90@gmail.com 
-###Linkedln
+### Linkedln
 https://www.linkedin.com/in/robis-sallop
-###Como me entere del desafio?
+### Como me entere del desafio?
 Me enteré de este desafío por una entrevista con Leonardo Miranda de Tech Consult
 
 Este proyecto es un API REST que entrega la siguiente información:
