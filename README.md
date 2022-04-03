@@ -23,7 +23,7 @@ Si se requiere activar el log DEBUG para las clases de la aplicación iniciar co
 	**java -jar -Dlogging.level.com.previred.app=DEBUG missing-date-api-1.0.0-SNAPSHOT.jar** 
 
 #### Test API
-> Para testar la api se puede ingresar a swagger en la url [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html) y ejecutar el endpoint GET /api/v1/search/missing/dates o se puede ir a la url [http://localhost:8081/api/v1/search/missing/dates](http://localhost:8081/api/v1/search/missing/dates) directamente, en ambos casos se invocará el servicio que busca las fechas en el geenerador de fechas y calcula las faltantes. <br/><br/>
+> Para testar la api se puede ingresar a swagger en la url [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html) y ejecutar el endpoint GET /api/v1/search/missing/dates o se puede ir a la url [http://localhost:8081/api/v1/search/missing/dates](http://localhost:8081/api/v1/search/missing/dates) directamente, en ambos casos se invocará el servicio que busca las fechas en el generador de fechas y calculará las faltantes. <br/><br/>
 
 #### Archivos
 > En la raíz del repositorio hay dos archivos **INPUT.json** y **OUTPUT.json**, estos son los archivos de ejemplos solicitados donde el INPUT contiene la entrada de fechas aleatorias y el OUTPUT el json original más las fechas faltantes.
