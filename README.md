@@ -2,6 +2,46 @@
   <img src="LogoTC.jpg" width="180" title="Tech Consult">
 </p>
 
+#Requisitos de entorno de desarrollo
+
+Para ambientar un equipo y comenzar a desarrollar es necesario contar con las siguientes herramientas y tecnologías:
+
+1. Java 8
+2. Maven version 3.6.X.
+3. Git para el control de versiones
+4. IDE para el desarrollo con java
+
+# Compilar y ejecutar el proyecto
+Para poder levantar el servicio localmente se deben seguir los siguientes pasos:
+
+1. Importar los fuentes del respositorio mediante git
+2. Compilar  con maven mediante el siguiente comando:
+
+    ```bash
+    mvn package
+    ```
+3. Para levantar el servicio ingresar al directorio target generado y ejecutar el siguiente comando:
+
+    ```bash
+    java -jar .\periodos-0.0.1-SNAPSHOT.jar
+    ```
+4. El servicio corre por defecto sobre el puerto 8090.
+
+5. Para probar el servicio bastara con consultar  el enpoint en postman
+
+    ```bash
+    GET http://localhost:8090/periodos/obtener-fechas-faltantes
+    ```
+6. Para visualizar la documentación en ambiente local Swagger
+    ```bash
+    http://localhost:8090/swagger-ui.html
+    ```
+7. Se adjunta json con respuesta respuesta.json   
+#Autor
+   - Nombre: Valeria Constanzo Riveros
+   - Correo: vconstanzor@gmail.com
+   - LinkedIn: https://www.linkedin.com/in/vconstanzor/   
+   
 # Desafío 1: Periodos perdidos
 
 El desafío consiste en lo siguiente:
@@ -36,59 +76,7 @@ https://github.com/lmptechconsult/Generador_Datos_Desafio_Uno
 El desafío puede ser resuelto de tres maneras distintas. 
 Tú eliges cuál es la que más te acomoda entre estos tres niveles:
 
-## Nivel 1: 
-    Crear un programa que recibe, a través de la entrada estándar, un archivo en formato Json con la estructura de la respuesta de servicio (como el ejemplo de arriba) y que entrega a través de la salida estándar, como respuesta, un archivo Json con las fechas faltantes.
-Ejemplo:
-    Se entrega un archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"]
-}
-```
 
-El programa debe responder con archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-}
-```
- 
-El programa se debe ejecutar de la siguiente manera:
-    $ mi_solucion < nombre_archivo_entrada > nombre_archivo_salida
-
-## Nivel 2:
-
-Construir un programa que invoque al servicio REST GDD y escriba como salida un archivo con las fechas, los periodos recibidos y la lista de periodos faltantes.
-Ejemplo:
-
-```
-INVOCACION:
-    $ mi-solucion
-SALIDA (un archivo con el siguiente contenido) :
-      fecha creación: 2018-10-01
-         fecha fin: 2019-04-01
-         fechas recibidas: 2018-10-01, 2018-12-01, 2019-01-01, 2019-04-01
-        fechas faltantes: 2018-11-01, 2019-02-01, 2019-03-01
-```
 
 ## Nivel 3:
 
@@ -132,3 +120,4 @@ REQUISITOS:
 
 NOTA:
 Todos los pull reuqests serán rechazados, esto no quiere decir que ha sido rechazada la solución, sino que es una forma de que otros postulantes no copien tu código.
+
