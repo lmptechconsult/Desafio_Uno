@@ -1,0 +1,21 @@
+
+Q
+!fechasperdidas/fechasperdidas.iml,e\6\e679704a634c93c8f30e9b4876f341d1cf3ea89e
+—
+gfechasperdidas/src/main/java/com/camilonavarrete/previred/fechasperdidas/FechasperdidasApplication.java,5\c\5cf6fe8361457fec6906c7937403bf536a93bca5
+h
+8Generador_Datos_Desafio_Uno-master/swagger/periodos.yaml,3\2\32213dd802dee4ac23365e16c9d1ed020e78f5a0
+f
+6Generador_Datos_Desafio_Uno-master/swagger/config.json,2\8\28f99e7a71bae7a37be55fb45cf9ab83a2a2a453
+¥
+uGenerador_Datos_Desafio_Uno-master/ApiPeriodos/src/main/java/com/previred/periodos/swagger/codegen/model/Periodo.java,0\6\06e183cd318613a07bacfbcd2f9e4503141682ce
+®
+~Generador_Datos_Desafio_Uno-master/ApiPeriodos/src/main/java/com/previred/periodos/swagger/codegen/api/ApiResponseMessage.java,e\8\e8153428b6bc97be679c41db2d0c83db9ca16f0c
+ 
+pGenerador_Datos_Desafio_Uno-master/ApiPeriodos/src/main/java/com/previred/periodos/servicio/PeriodosService.java,a\8\a896de9a89060769830077dbbedc0ad6740321bd
+¬
+|Generador_Datos_Desafio_Uno-master/ApiPeriodos/src/main/java/com/previred/periodos/swagger/codegen/api/ApiApiController.java,b\3\b3449d90d619fcfa5b899f615505e5117eca041c
+¢
+rGenerador_Datos_Desafio_Uno-master/ApiPeriodos/src/main/java/com/previred/periodos/swagger/codegen/api/ApiApi.java,f\c\fcc92b1a6204633f365deff02a54723da52fe165
+F
+fechasperdidas/pom.xml,1\1\11746cf9252efea8ae908f4741d77cf7e1582145
