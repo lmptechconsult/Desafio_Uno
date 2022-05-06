@@ -8,12 +8,12 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-/** Clase que permite enviar solicitud a ValidadorFirmas.
+/** Clase que permite enviar solicitud a un WS.
  * @author Rodrigo.Pérez */
 public class ClienteWebServiceImpl implements ClienteWebService {
 
     /** Logger de la clase. */
-    private static final Logger LOGGER = Logger.getLogger("PruebaPR");
+    private static final Logger LOGGER = Logger.getLogger("DesafioPreviRed");
     /** Variable privada estatica String de la clase. */
     private static final String STRING_CLASE = "[ClienteWebServiceImpl] ";
     /** Instancia de Gson para convertir objetos a formato JSON. */
@@ -21,14 +21,13 @@ public class ClienteWebServiceImpl implements ClienteWebService {
 
     /** Constructor de la clase ClienteWebService. */
     public ClienteWebServiceImpl() {
-
         //
     }
 
     @Override
-    public String enviarSolicitudGDD(String endpoint) {
+    public String enviarSolicitudGDD(String endpoint) throws Exception {
         final String nombreMetodo = STRING_CLASE + "[enviarSolicitudGDD] ";
-        LOGGER.debug(nombreMetodo + endpoint);
+        LOGGER.debug(nombreMetodo + "Se envia solicitud: " + endpoint);
         try {
             int minimalTimeOut = 5000;
             Unirest.setTimeouts(minimalTimeOut, minimalTimeOut);
@@ -38,7 +37,7 @@ public class ClienteWebServiceImpl implements ClienteWebService {
             return body.toString();
         } catch (UnirestException e) {
             LOGGER.error(nombreMetodo + "Error al enviar solicitud al ws : ", e);
+            throw new Exception(e);
         }
-        return null;
     }
 }

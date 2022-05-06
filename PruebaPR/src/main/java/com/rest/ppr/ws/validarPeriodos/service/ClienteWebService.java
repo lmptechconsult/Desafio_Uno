@@ -14,5 +14,5 @@ public interface ClienteWebService {
      * @param timeout Tiempo de espera para cerrar conexion.
      * @return Respuesta del servicio.
      */
-    String enviarSolicitudGDD(final String endpoint);
+    String enviarSolicitudGDD(final String endpoint) throws Exception;
 }
