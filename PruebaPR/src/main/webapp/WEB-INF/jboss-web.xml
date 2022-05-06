@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
 <!--     <context-root>${env.VALIDADOR_FIRMAS_SERVER_CONTEXTPATH}</context-root> -->
-	<context-root>/PruebaPR</context-root>
+	<context-root>/DesafioPreviRed</context-root>
 </jboss-web>
