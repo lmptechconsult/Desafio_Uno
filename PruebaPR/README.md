@@ -1,4 +1,4 @@
-# Desafío 1: Periodos perdidos
+# Desafío: Periodos perdidos
 
 Para compilar, desplegar y probar la solucion se describen los siguientes pasos.
 
