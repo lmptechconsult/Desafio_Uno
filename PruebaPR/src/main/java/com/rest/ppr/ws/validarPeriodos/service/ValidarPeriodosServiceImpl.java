@@ -74,6 +74,7 @@ public class ValidarPeriodosServiceImpl implements ValidarPeriodosService {
             error = new RespuestaError(508, e.getMessage());
             return gson.toJson(error);
         }
+        LOGGER.debug(nombreMetodo + "Fin metodo. Se genera respuesta.");
         return gson.toJson(respuesta);
     }
 
