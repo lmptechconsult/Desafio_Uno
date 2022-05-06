@@ -1,134 +1,33 @@
-<p align="center">
-  <img src="LogoTC.jpg" width="180" title="Tech Consult">
-</p>
-
 # Desafío 1: Periodos perdidos
 
-El desafío consiste en lo siguiente:
+Para compilar, desplegar y probar la solucion se describen los siguientes pasos.
 
--   Existe un servicio REST que llamaremos Generador De Datos o GDD.
-    -   El servicio responde con una lista de fechas generadas aleatoriamente. Estas fechas se encuentran en un lapso definidos por dos valores: fechaCreacion y fechaFin.
-    -   Cada fecha generada corresponde al primer día de un mes.
-    -   La respuesta contienen un máximo de 100 fechas. 
-    -   El servicio no entrega todas las fechas dentro del periodo, omite algunas de forma también aleatoria.
--   El objetivo de este ejercicio es que determines cuáles son los periodos que faltan.
+NOTA: La solucion se desplegara en un servidor Wildfly. El quipo debe tener instalado JDK
 
-Este es un ejemplo de la respuesta que entrega este servicio:
+Requisitos:
+- Descargar el servidor wildfly del siguiente enlace: https://drive.google.com/file/d/14Zqpg7nr5NkW-riKPUs5TZiUi1BO7y8q/view?usp=sharing
+- Extraer wildfly-10.1.0.Final
 
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1968-08-01",
-    "fechaFin": "1971-06-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1971-05-01"]
-}
-```
+## Compilar: 
 
-Acá se puede apreciar que el servicio generó fechas entre el 1 de agosto de 1968 y el 1 de junio de 1971. Sólo se generaron 4 fechas en este caso. 
-De acuerdo a esto, faltarían fechas, 5 de 1968, 9 fechas de 1969, 5 fechas de 1971, etc.
-Una versión del GDD se encuentra en este repositorio en GitHub:
-https://github.com/lmptechconsult/Generador_Datos_Desafio_Uno
+Una vez clonado el proyecto "PruebaPR" en nuestro equipo, ingresar por consola (cmd) al directorio PruebaPR del proyecto y ejecutar:
+- mvn clean
+- mvn install
 
-El desafío puede ser resuelto de tres maneras distintas. 
-Tú eliges cuál es la que más te acomoda entre estos tres niveles:
+Esto genera el .war (DesafioPreviRed-0.0.1.war) en el directorio ./target de nuestro proyecto.
+- Copiar DesafioPreviRed-0.0.1.war y Pegar en el directorio ./deployments del servidor wildfly (wildfly-10.1.0.Final\standalone\deployments)
+NOTA: Este paso se recomienda hacer manualmente (no por comandos cmd)
 
-## Nivel 1: 
-    Crear un programa que recibe, a través de la entrada estándar, un archivo en formato Json con la estructura de la respuesta de servicio (como el ejemplo de arriba) y que entrega a través de la salida estándar, como respuesta, un archivo Json con las fechas faltantes.
-Ejemplo:
-    Se entrega un archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"]
-}
-```
+## Desplegar: 
+Para iniciar el servidor wildfly ingresar por consola (cmd) al directorio ./bin (wildfly-10.1.0.Final\bin) y ejecutar:
+- standalone.bat
 
-El programa debe responder con archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-}
-```
- 
-El programa se debe ejecutar de la siguiente manera:
-    $ mi_solucion < nombre_archivo_entrada > nombre_archivo_salida
-
-## Nivel 2:
-
-Construir un programa que invoque al servicio REST GDD y escriba como salida un archivo con las fechas, los periodos recibidos y la lista de periodos faltantes.
-Ejemplo:
-
-```
-INVOCACION:
-    $ mi-solucion
-SALIDA (un archivo con el siguiente contenido) :
-      fecha creación: 2018-10-01
-         fecha fin: 2019-04-01
-         fechas recibidas: 2018-10-01, 2018-12-01, 2019-01-01, 2019-04-01
-        fechas faltantes: 2018-11-01, 2019-02-01, 2019-03-01
-```
-
-## Nivel 3:
-
-Implementar un nuevo servicio REST. Este servicio REST debe invocar al servicio GDD y entregar la respuesta en formato JSON con las fechas recibidas y las fechas faltantes.
-Ejemplo de la respuesta que debería entregar:
-
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"],
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-
-}
-```
-
-REQUISITOS:
--   Se pueden implementar las soluciones en cualquier lenguaje y framework. Aunque recomendamos usar: Java(con o sin Spring Boot), Go y Python.
--   La solución debe ser enviada vía un pull request a este repositorio.
--   La solución debe contener un README.md con las instrucciones para compilar e instalar.
--   Puedes implementar cualquiera de los 3 niveles, no es necesario implementar los 3.
--   Hay bonus si usas SWAGGER.
--   Junto con la solución debes entregar un archivo con la entrada y con la salida en formato JSON.
-- Por ultimo en el detalle del commit debes indicar los siguientes datos
-   - Nombre Completo.
-   - Correo Electrónico.
-   - Vía por la que te entérate del desafío. Estas pueden ser: Empresa de outsourcing (indicar cuál), twitter, LinkedIn, etc.
+Esto iniciara el servidor y desplegara lo que se encuentre en el directorio ./deployments
+NOTA: Para verificar que el despliegue quedo OK, ir al directorio ./deployments y ver que se haya creado DesafioPreviRed-0.0.1.war.deployed
 
 
-NOTA:
-Todos los pull reuqests serán rechazados, esto no quiere decir que ha sido rechazada la solución, sino que es una forma de que otros postulantes no copien tu código.
+Para consumir el servicio se debe invocar la siguiente URL http://127.0.0.1:8080/DesafioPreviRed/validarPeriodos
+
+## Adicional: 
+- Se escribe archivo DesafioPreviRed.log del servicio en cada invocacion. Este esta disponible en el directorio ./log del servidor wildfly (wildfly-10.1.0.Final\standalone\log)
+- Se generan archivos respuestaValidarPeriodos.json y respuestaValidarPeriodos.yml con la respuesta del servicio. Estos estan disponibles en el directorio ./bin del servidor wildfly (wildfly-10.1.0.Final\bin)
