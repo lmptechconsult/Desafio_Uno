@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="LogoTC.jpg" width="180" title="Tech Consult">
-</p>
 
 # Generador Datos Desafio
 
@@ -52,33 +49,36 @@ java -jar .\api-periodos-1.0.0.jar
 *Nota*:
 Debe estar disponible el puerto *8080* en el PC donde se ejecute esta API
 
-# Visualizar Documentación y consumir la API
 
-La documentación swagger del API (una vez que se levanta el API) queda disponible en
+# Generador de Fechas Faltantes
 
-http://127.0.0.1:8080/periodos/swagger-ui.html#/
+Este proyecto expone un API REST que entrega la información del generador de datos anterior,
+mas las fechas faltantes que no aparence en dicho listado
 
-Para consumir el servicio se debe invocar la siguiente URL
 
-```bash
-curl -X GET --header 'Accept: application/json' 'http://127.0.0.1:8080/periodos/api'
-```
+# Detalle de los sistemas
+Java 8
+Spring-Boot 1.5.11.RELEASE
+Maven 3
 
-# Regenerar API a partir de yaml
 
-Las siguientes instrucciones solo son para re-escribir el API si es necesario agregar una nueva funcionalidad a partir del *YAML*.
+# Compilar y ejecutar el proyecto
 
-Bajar SwaggerCodeGen 2.3.1 en la raíz del proyecto, ejecutando el siguiente comando por consola.
-
-```bash
-wget http://oss.sonatype.org/content/repositories/releases/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar -O swagger-codegen-cli.jar
-```
-
-Para re-crear el código a partir de la definición del *YAML* de swagger ejecutar el siguiente comando
+Para copilar el proyecto se requiere Java y Maven instalado.
+Ingresar al directorio *fechas_faltantes* ejecutar el siguiente comando *maven*
 
 ```bash
-java -jar .\swagger-codegen-cli.jar generate -i .\swagger\periodos.yaml -l spring -c .\swagger\config.json -o ApiPeriodos --ignore-file-override .\.swagger-codegen-ignore
+mvn package
 ```
 
+Luego de compilar el proyecto ingresar al directorio *target* ejecutar el siguiente comando *java*
+
+```bash
+java -jar .\fechas_faltantes-0.0.1-SNAPSHOT.jar
+```
+
+otra alternativa es abrir la carpeta *fechas_faltantes* en su IDE, compilar y ejecutar directamente desde IDE
 *Nota*:
-Esto creara toda la estructura de swagger y re-escribirá todas las clases que no estén declaradas en el archivo *.swagger-codegen-ignore*
+Debe estar disponible el puerto *8090* en el PC donde se ejecute esta API
+
+
