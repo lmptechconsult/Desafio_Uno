@@ -1,134 +1,65 @@
-<p align="center">
-  <img src="LogoTC.jpg" width="180" title="Tech Consult">
-</p>
+# API REST Desafio uno
 
-# Desafío 1: Periodos perdidos
+Esta API REST, tiene como funcionalidad indentificar todas las fechas faltantes a partir de un listado de fechas entregadas (entre un periodo de determinado) por la API "Generador De Datos o GDD", una versión de GDD se encuentra en este repositorio en GitHub: https://github.com/lmptechconsult/Generador_Datos_Desafio_Uno.
 
-El desafío consiste en lo siguiente:
-
--   Existe un servicio REST que llamaremos Generador De Datos o GDD.
-    -   El servicio responde con una lista de fechas generadas aleatoriamente. Estas fechas se encuentran en un lapso definidos por dos valores: fechaCreacion y fechaFin.
-    -   Cada fecha generada corresponde al primer día de un mes.
-    -   La respuesta contienen un máximo de 100 fechas. 
-    -   El servicio no entrega todas las fechas dentro del periodo, omite algunas de forma también aleatoria.
--   El objetivo de este ejercicio es que determines cuáles son los periodos que faltan.
-
-Este es un ejemplo de la respuesta que entrega este servicio:
-
+A continuación se muestra un ejemplo de un mensaje entregado por GDD.
 ```json
 {
     "id": 6,
-    "fechaCreacion": "1968-08-01",
+    "fechaCreacion": "1970-08-01",
     "fechaFin": "1971-06-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1971-05-01"]
+    "fechas": [     
+      "1970-09-01",
+	  "1971-04-01",
+      "1971-05-01"],
+	"fechasFaltantes": [
+      "1970-08-01",
+      "1970-10-01",
+	  "1970-11-01",
+	  "1970-12-01",
+      "1971-01-01",
+	  "1971-02-01",
+	  "1971-03-01",
+      "1971-06-01"]
 }
 ```
 
-Acá se puede apreciar que el servicio generó fechas entre el 1 de agosto de 1968 y el 1 de junio de 1971. Sólo se generaron 4 fechas en este caso. 
-De acuerdo a esto, faltarían fechas, 5 de 1968, 9 fechas de 1969, 5 fechas de 1971, etc.
-Una versión del GDD se encuentra en este repositorio en GitHub:
-https://github.com/lmptechconsult/Generador_Datos_Desafio_Uno
+## Diseño API REST Desafio Uno
+La API REST Desafio Uno, se compone principalmente de las siguientes clases y archivos de configuración (hay más pero solo se nombrarán las más importantes):
+* ExternalApiCallerController.java
+* IMissingDatesServices.java
+* RestRepository.java
+* ApiExceptionHandler.java
+* application.properties
+### ExternalApiCallerController
+Esta clase se encarga de establecer un endpoint REST, "/periodos" usando la anotación @RequestMapping y además se encarga de realizar el llamado al servicio 	IMissingDatesServices
 
-El desafío puede ser resuelto de tres maneras distintas. 
-Tú eliges cuál es la que más te acomoda entre estos tres niveles:
+### IMissingDatesServices
+Esta clase se encarga de realizar un llamado a la clase RestRepository y en base a lo que esta le entregue como resultado manipulará los datos para escribirlos en formato json en dos archivos (input.json y output.json), tambien se hacen llamados a dinstintas funcionalidades para calcular las fechas faltantes en los datos recibidos, una vez realizado todos los calculos se retorna un String en formato Json hacia ExternalApiCallerController.
 
-## Nivel 1: 
-    Crear un programa que recibe, a través de la entrada estándar, un archivo en formato Json con la estructura de la respuesta de servicio (como el ejemplo de arriba) y que entrega a través de la salida estándar, como respuesta, un archivo Json con las fechas faltantes.
-Ejemplo:
-    Se entrega un archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"]
-}
-```
+### IMissingDatesServices
+Esta clase es la encargada de consumir la api rest GDD y luego mapear todo lo que reciba de esta api a un objeto, el cual finalmente es retornado hacia el servicio IMissingDatesServices.
 
-El programa debe responder con archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-}
-```
- 
-El programa se debe ejecutar de la siguiente manera:
-    $ mi_solucion < nombre_archivo_entrada > nombre_archivo_salida
+### ApiExceptionHandler
+Esta clase es la encargada de manipular toda excepción creada durante el desarrollo de este proyecto.
 
-## Nivel 2:
-
-Construir un programa que invoque al servicio REST GDD y escriba como salida un archivo con las fechas, los periodos recibidos y la lista de periodos faltantes.
-Ejemplo:
-
-```
-INVOCACION:
-    $ mi-solucion
-SALIDA (un archivo con el siguiente contenido) :
-      fecha creación: 2018-10-01
-         fecha fin: 2019-04-01
-         fechas recibidas: 2018-10-01, 2018-12-01, 2019-01-01, 2019-04-01
-        fechas faltantes: 2018-11-01, 2019-02-01, 2019-03-01
-```
-
-## Nivel 3:
-
-Implementar un nuevo servicio REST. Este servicio REST debe invocar al servicio GDD y entregar la respuesta en formato JSON con las fechas recibidas y las fechas faltantes.
-Ejemplo de la respuesta que debería entregar:
-
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"],
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-
-}
-```
-
-REQUISITOS:
--   Se pueden implementar las soluciones en cualquier lenguaje y framework. Aunque recomendamos usar: Java(con o sin Spring Boot), Go y Python.
--   La solución debe ser enviada vía un pull request a este repositorio.
--   La solución debe contener un README.md con las instrucciones para compilar e instalar.
--   Puedes implementar cualquiera de los 3 niveles, no es necesario implementar los 3.
--   Hay bonus si usas SWAGGER.
--   Junto con la solución debes entregar un archivo con la entrada y con la salida en formato JSON.
-- Por ultimo en el detalle del commit debes indicar los siguientes datos
-   - Nombre Completo.
-   - Correo Electrónico.
-   - Vía por la que te entérate del desafío. Estas pueden ser: Empresa de outsourcing (indicar cuál), twitter, LinkedIn, etc.
+### application.properties
+Este archivo contiene campos los cuales pueden ser modificadas segun se requiera, **importante mencionar que el proyecto estaba almacenado en una carpeta llamada Desafio en el disco D, por lo que se recomienda cambiar las variables path.input.json y path.output.json para obtener de manera correcta los archivos de entrada y salida**.
 
 
-NOTA:
-Todos los pull reuqests serán rechazados, esto no quiere decir que ha sido rechazada la solución, sino que es una forma de que otros postulantes no copien tu código.
+## Como compilar y ejecutar API REST Desafio Uno
+Para compilar el proyecto se requiere Java y Maven instalado. Ingresar al directorio desafio ejecutar el siguiente comando maven
+
+	mvn package
+Luego de compilar el proyecto ingresar al directorio target ejecutar el siguiente comando java **debe tener el puerto 8090 disponible**
+			
+	java -jar .\desafio-0.0.1-SNAPSHOT.jar
+
+## Documentación mediante Swagger2
+
+La documentación está disponible (mientras el proyecto esté en ejecución) en la siguiente url : http://localhost:8090/swagger-ui/
+
+## Para consumir el servicio
+	
+	curl -X GET "http://localhost:8090/periodos" -H "accept: application/json"
+	
