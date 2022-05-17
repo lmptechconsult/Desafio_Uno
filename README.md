@@ -2,6 +2,24 @@
   <img src="LogoTC.jpg" width="180" title="Tech Consult">
 </p>
 
+# Pre-requisitos (tener instalado y configurado)
+
+```
+Gradle
+Lombok
+```
+
+# Instalación
+
+```
+Importar proyecto
+Actualizar dependencias
+Configurar puertos para este proyecto y el proyecto GDD (properties)
+Configurar dirreción para los archivos json input y output (properties)
+Luego ejecutar
+```
+
+
 # Desafío 1: Periodos perdidos
 
 El desafío consiste en lo siguiente:
