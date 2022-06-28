@@ -36,6 +36,7 @@ public class IFechaServiceImpl implements IFechaService{
 		LocalDate fechaInicio = LocalDate.parse(requestFecha.getFechaCreacion()).withDayOfMonth(1);
 		LocalDate fechaFin = LocalDate.parse(requestFecha.getFechaFin()).withDayOfMonth(1);
 		List<LocalDate> fechas = new ArrayList<LocalDate>();
+		List<LocalDate> fechasExcluidas = requestFecha.getFechas();
 
 		long diferenciaMeses = ChronoUnit.MONTHS.between(fechaInicio, fechaFin.plusMonths(-1));
 
@@ -43,7 +44,7 @@ public class IFechaServiceImpl implements IFechaService{
 			LocalDate localDate = fechaInicio.plusMonths(i);
 			fechas.add(localDate);
 		}
-
+		fechas.removeIf(fecha -> fechasExcluidas.contains(fecha));
         return fechas;
     }
 
@@ -52,11 +53,16 @@ public class IFechaServiceImpl implements IFechaService{
 		log.info("[IFechaServiceImpl] - metodo fechasRandom Service {}" + listRandom);
 
 		List<LocalDate> fechaRandom = new ArrayList<LocalDate>();
-
-		for (int i = 0; i < 100; i++)
+		int count = 0;
+		for (int i = 0; i < listRandom.size(); i++)
 		{
+			count = count+1;
 			int index = (int)(Math.random() * listRandom.size());
 			fechaRandom.add(listRandom.get(i).withDayOfMonth(1));
+
+			if (count == 100){
+				break;
+			}
 		}
 		return fechaRandom;
 	}
