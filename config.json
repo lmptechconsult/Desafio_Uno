@@ -1,0 +1,15 @@
+{
+  "groupId"         : "cl.mgajardo.apiperiodosperdidos",
+  "artifactId"      : "api-periodos-perdidos",
+  "artifactVersion" : "1.0",
+  "artifactDescription" : "Servicio de lista con periodo perdido",
+  "basePackage"     : "cl.mgajardo.apiperiodosperdidos",
+  "invokerPackage"  : "cl.mgajardo.apiperiodosperdidos",
+  "apiPackage"      : "cl.mgajardo.apiperiodosperdidos.controller",
+  "modelPackage"    : "cl.mgajardo.apiperiodosperdidos.viewmodel",
+  "configPackage"   : "cl.mgajardo.apiperiodosperdidos",
+  "java8"           : true,
+  "title"           : "API Periodos Perdidos",
+  "hideGenerationTimestamp" : true,
+  "library"         : "spring-boot"
+}
