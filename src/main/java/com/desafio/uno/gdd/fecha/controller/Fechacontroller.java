@@ -38,7 +38,6 @@ public class Fechacontroller {
 			if (requestFecha == null){
 				return new ResponseEntity<>(null,HttpStatus.BAD_GATEWAY);
 			}
-
 			return new ResponseEntity<>(iFechaService.ingresoRangoFechas(requestFecha),HttpStatus.OK);
 
 		}catch (Exception e) {
