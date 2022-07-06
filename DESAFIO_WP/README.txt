@@ -22,6 +22,3 @@ NOTA: Debe estar disponible el purto 8081
 
 curl -X GET "http://localhost:8081/desafio/api/fechasFaltantes" -H "accept: application/json"
 
-
-5.- Debe estar corriendo el servicio de Periodos. de lo contrario el servicio del desafio retornara un mensaje indicandolo.
-
