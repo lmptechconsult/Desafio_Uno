@@ -19,20 +19,36 @@ public class ResponseServiceImpl implements ResponseService{
 
     public ResponseFinal responseService() {
 
-        Periodo payload = clientRest.getForObject("http://127.0.0.1:8080/periodos/api", Periodo.class);
+        Periodo currentPeriodo = clientRest.getForObject("http://127.0.0.1:8080/periodos/api", Periodo.class);
 
-        List<LocalDate> fechasIngresadas = payload.getFechas();
+        return buildResponseFinal(currentPeriodo);
+    }
+
+    private ResponseFinal buildResponseFinal(Periodo currentPeriodo){
+        List<LocalDate> fechasIngresadas = currentPeriodo.getFechas();
         List<LocalDate> fechasOrdenadas = new ArrayList<>();
         List<LocalDate> fechasFaltantes = new ArrayList<>();
 
-        LocalDate fechaInicio = payload.getFechaCreacion();
-        LocalDate fechaFin = payload.getFechaFin();
+        LocalDate fechaInicio = currentPeriodo.getFechaCreacion();
+        LocalDate fechaFin = currentPeriodo.getFechaFin();
 
+        fechasOrdenadas = ordenarFechas(fechaInicio,fechaFin);
+
+        fechasFaltantes = fechasOrdenadas;
+
+        fechasFaltantes.removeAll(fechasIngresadas);
+
+        return new ResponseFinal(currentPeriodo, fechasFaltantes);
+    }
+
+    private List<LocalDate> ordenarFechas(LocalDate fechaInicio, LocalDate fechaFinal){
+
+        List<LocalDate> fechasOrdenadas = new ArrayList<>();
 
         int minYear = fechaInicio.getYear();
-        int maxYear = fechaFin.getYear();
+        int maxYear = fechaFinal.getYear();
         int minMonth = fechaInicio.getMonthValue();
-        int maxMonth = fechaFin.getMonthValue();
+        int maxMonth = fechaFinal.getMonthValue();
 
 
         String dateString = null;
@@ -79,11 +95,7 @@ public class ResponseServiceImpl implements ResponseService{
             }
         }
 
-        fechasFaltantes = fechasOrdenadas;
-
-        fechasFaltantes.removeAll(fechasIngresadas);
-
-        return new ResponseFinal(payload , fechasFaltantes);
+        return fechasOrdenadas;
     }
 
 
