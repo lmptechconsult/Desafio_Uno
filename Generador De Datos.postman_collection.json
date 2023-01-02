@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "7aeba79d-631a-4386-b32b-f0f4f5891d51",
+		"name": "Generador De Datos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/periodos-api/v1/periodos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"id\": 6,\r\n    \"fechaCreacion\": \"1969-03-01\",\r\n    \"fechaFin\": \"1974-01-01\",\r\n\r\n    \"fechas\": [\r\n      \"1969-03-01\",\r\n      \"1969-05-01\",\r\n      \"1969-09-01\",\r\n      \"1970-01-01\"]\r\n\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/periodos-api/v1/periodos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"periodos-api",
+						"v1",
+						"periodos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
