@@ -1,1 +1,12 @@
 
+Para poder compilar el programa debe tener una versión de JAVA superior o igual al 11 y la última versión de maven 3.8.1
+
+Para copilar ingresar al directorio periodos ejecutar el siguiente comando : mvn package
+
+Luego de compilar el proyecto ingresar al directorio target ejecutar el siguiente comando : java -jar .\periodos-0.0.1-SNAPSHOT.jar
+
+Debe estar disponible el puerto 8080 en el PC donde se ejecuta esta API usuando Postman para cargar el JSON de prueba : Generador De Datos.postman_collection
+
+La documentación swagger del API (una vez que se levanta el API) queda disponible en
+
+http://localhost:8080
