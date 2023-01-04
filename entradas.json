@@ -1,0 +1,15 @@
+import json
+
+# Leer el archivo JSON de la entrada estándar
+response = json.load(sys.stdin)
+
+# Llamar a la función meses_faltantes para obtener la lista de meses faltantes
+meses_faltantes = meses_faltantes(response)
+
+# Crear un diccionario con el resultado
+resultado = {
+    "meses_faltantes": meses_faltantes
+}
+
+# Escribir el resultado en formato JSON en la salida estándar
+print(json.dumps(resultado))
