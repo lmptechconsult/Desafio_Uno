@@ -2,6 +2,10 @@
   <img src="LogoTC.jpg" width="180" title="Tech Consult">
 </p>
 
+Favor revisar el archivo README dentro de la carpeta test_desafio_uno que contiene la descripcion de la solucion y como se debe ejecutar.
+
+					
+
 # Desafío 1: Periodos perdidos
 
 El desafío consiste en lo siguiente:
@@ -35,60 +39,6 @@ https://github.com/lmptechconsult/Generador_Datos_Desafio_Uno
 
 El desafío puede ser resuelto de tres maneras distintas. 
 Tú eliges cuál es la que más te acomoda entre estos tres niveles:
-
-## Nivel 1: 
-    Crear un programa que recibe, a través de la entrada estándar, un archivo en formato Json con la estructura de la respuesta de servicio (como el ejemplo de arriba) y que entrega a través de la salida estándar, como respuesta, un archivo Json con las fechas faltantes.
-Ejemplo:
-    Se entrega un archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"]
-}
-```
-
-El programa debe responder con archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-}
-```
- 
-El programa se debe ejecutar de la siguiente manera:
-    $ mi_solucion < nombre_archivo_entrada > nombre_archivo_salida
-
-## Nivel 2:
-
-Construir un programa que invoque al servicio REST GDD y escriba como salida un archivo con las fechas, los periodos recibidos y la lista de periodos faltantes.
-Ejemplo:
-
-```
-INVOCACION:
-    $ mi-solucion
-SALIDA (un archivo con el siguiente contenido) :
-      fecha creación: 2018-10-01
-         fecha fin: 2019-04-01
-         fechas recibidas: 2018-10-01, 2018-12-01, 2019-01-01, 2019-04-01
-        fechas faltantes: 2018-11-01, 2019-02-01, 2019-03-01
-```
 
 ## Nivel 3:
 
