@@ -1,134 +1,236 @@
-<p align="center">
-  <img src="LogoTC.jpg" width="180" title="Tech Consult">
-</p>
 
-# Desafío 1: Periodos perdidos
+# Generador de Fechas faltantes desafio uno
 
-El desafío consiste en lo siguiente:
+la app tiene la funcion de consultar en el generador de datos 
+(facilitado desde https://github.com/lmptechconsult/Generador_Datos_Desafio_Uno)
+se recomienda acceder y ejecutar para el correcto funcionamiento de la presente aplicacion
 
--   Existe un servicio REST que llamaremos Generador De Datos o GDD.
-    -   El servicio responde con una lista de fechas generadas aleatoriamente. Estas fechas se encuentran en un lapso definidos por dos valores: fechaCreacion y fechaFin.
-    -   Cada fecha generada corresponde al primer día de un mes.
-    -   La respuesta contienen un máximo de 100 fechas. 
-    -   El servicio no entrega todas las fechas dentro del periodo, omite algunas de forma también aleatoria.
--   El objetivo de este ejercicio es que determines cuáles son los periodos que faltan.
+# Detalle de los sistemas
+SpringFox-Swagger2 2.9.2 Java 8 Spring-Boot 2.6.7.RELEASE Maven 3
 
-Este es un ejemplo de la respuesta que entrega este servicio:
+# Compilar y ejecutar el proyecto
 
-```json
+Para copilar el proyecto se requiere Java y Maven instalado.
+Para ejecutar el proyeto se requiere de tener el proyecto *ApiPeriodos* corriendo en el puerto 8080
+Ingresar al directorio *DesafioUno* ejecutar el siguiente comando *maven*
+
+```bash
+mvn package
+```
+Luego de compilar el proyecto ingresar al directorio *target* ejecutar el siguiente comando *java*
+
+```bash
+java -jar .\desafiouno-0.0.1-SNAPSHOT.jar --server.port=8090
+```
+
+la app se inicia en el puerto 8090 para evitar modificar el proyecto que hace entrega de la informacion
+Por lo tanto se requeriran de los puertos 8080 y 8090 para la ejecucion
+
+# Visualizar Documentación y consumir la API
+La documentación swagger del API (una vez que se levanta el API) queda disponible en
+
+http://localhost:8090/swagger-ui.html
+
+Para consumir el servicio se debe invocar la siguiente URL
+
+curl -X GET --header 'Accept: application/json' 'http://localhost:8090/desafio_uno/fechasFaltantes'
+
+# Ultimos detalles
+se probó a realizar la implementación del desafio uno con localDate, sin embargo y por problemas con el rendimiento se realizo una modificacion que contempla el uso de variables como String para poder hacer un implementacion más ligera.
+
+# ejemplo de respuesta
+```bash
 {
-    "id": 6,
-    "fechaCreacion": "1968-08-01",
-    "fechaFin": "1971-06-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1971-05-01"]
+    "id":1,
+    "fechaCreacion":"2000-08-01",
+    "fechaFin":"2015-11-01",
+    "fechas":[
+        "2000-08-01",
+        "2000-10-01",
+        "2000-11-01",
+        "2001-01-01",
+        "2001-02-01",
+        "2001-03-01",
+        "2001-04-01",
+        "2001-11-01",
+        "2002-04-01",
+        "2002-07-01",
+        "2002-10-01",
+        "2002-11-01",
+        "2003-02-01",
+        "2003-04-01",
+        "2003-05-01",
+        "2003-07-01",
+        "2003-09-01",
+        "2003-12-01",
+        "2004-01-01",
+        "2004-02-01",
+        "2004-03-01",
+        "2004-05-01",
+        "2004-06-01",
+        "2004-08-01",
+        "2004-09-01",
+        "2004-10-01",
+        "2004-11-01",
+        "2005-04-01",
+        "2005-05-01",
+        "2005-07-01",
+        "2005-10-01",
+        "2005-11-01",
+        "2005-12-01",
+        "2006-01-01",
+        "2006-03-01",
+        "2006-04-01",
+        "2006-05-01",
+        "2006-06-01",
+        "2006-09-01",
+        "2006-11-01",
+        "2007-01-01",
+        "2007-04-01",
+        "2007-05-01",
+        "2007-09-01",
+        "2007-10-01",
+        "2007-11-01",
+        "2008-01-01",
+        "2008-02-01",
+        "2008-04-01",
+        "2008-06-01",
+        "2008-08-01",
+        "2008-12-01",
+        "2009-01-01",
+        "2009-02-01",
+        "2009-04-01",
+        "2009-06-01",
+        "2009-09-01",
+        "2009-11-01",
+        "2009-12-01",
+        "2010-03-01",
+        "2010-04-01",
+        "2010-05-01",
+        "2010-06-01",
+        "2010-08-01",
+        "2010-11-01",
+        "2010-12-01",
+        "2011-01-01",
+        "2011-02-01",
+        "2011-03-01",
+        "2011-05-01",
+        "2011-07-01",
+        "2011-08-01",
+        "2011-09-01",
+        "2011-10-01",
+        "2011-11-01",
+        "2011-12-01",
+        "2012-01-01",
+        "2012-02-01",
+        "2012-06-01",
+        "2012-07-01",
+        "2012-08-01",
+        "2012-09-01",
+        "2012-10-01",
+        "2012-12-01",
+        "2013-03-01",
+        "2013-04-01",
+        "2013-05-01",
+        "2013-10-01",
+        "2013-11-01",
+        "2014-01-01",
+        "2014-03-01",
+        "2014-04-01",
+        "2014-07-01",
+        "2014-08-01",
+        "2014-09-01",
+        "2014-10-01",
+        "2014-12-01",
+        "2015-01-01",
+        "2015-02-01",
+        "2015-03-01",
+        "2015-07-01",
+        "2015-09-01",
+        "2015-11-01"
+    ],
+    "fechasFaltantes":[
+        "2000-09-01",
+        "2000-12-01",
+        "2001-05-01",
+        "2001-06-01",
+        "2001-07-01",
+        "2001-08-01",
+        "2001-09-01",
+        "2001-10-01",
+        "2001-12-01",
+        "2002-01-01",
+        "2002-02-01",
+        "2002-03-01",
+        "2002-05-01",
+        "2002-06-01",
+        "2002-08-01",
+        "2002-09-01",
+        "2002-12-01",
+        "2003-01-01",
+        "2003-03-01",
+        "2003-06-01",
+        "2003-08-01",
+        "2003-10-01",
+        "2003-11-01",
+        "2004-04-01",
+        "2004-07-01",
+        "2004-12-01",
+        "2005-01-01",
+        "2005-02-01",
+        "2005-03-01",
+        "2005-06-01",
+        "2005-08-01",
+        "2005-09-01",
+        "2006-02-01",
+        "2006-07-01",
+        "2006-08-01",
+        "2006-10-01",
+        "2006-12-01",
+        "2007-02-01",
+        "2007-03-01",
+        "2007-06-01",
+        "2007-07-01",
+        "2007-08-01",
+        "2007-12-01",
+        "2008-03-01",
+        "2008-05-01",
+        "2008-07-01",
+        "2008-09-01",
+        "2008-10-01",
+        "2008-11-01",
+        "2009-03-01",
+        "2009-05-01",
+        "2009-07-01",
+        "2009-08-01",
+        "2009-10-01",
+        "2010-01-01",
+        "2010-02-01",
+        "2010-07-01",
+        "2010-09-01",
+        "2010-10-01",
+        "2011-04-01",
+        "2011-06-01",
+        "2012-03-01",
+        "2012-04-01",
+        "2012-05-01",
+        "2012-11-01",
+        "2013-01-01",
+        "2013-02-01",
+        "2013-06-01",
+        "2013-07-01",
+        "2013-08-01",
+        "2013-09-01",
+        "2013-12-01",
+        "2014-02-01",
+        "2014-05-01",
+        "2014-06-01",
+        "2014-11-01",
+        "2015-04-01",
+        "2015-05-01",
+        "2015-06-01",
+        "2015-08-01",
+        "2015-10-01"
+    ]
 }
 ```
-
-Acá se puede apreciar que el servicio generó fechas entre el 1 de agosto de 1968 y el 1 de junio de 1971. Sólo se generaron 4 fechas en este caso. 
-De acuerdo a esto, faltarían fechas, 5 de 1968, 9 fechas de 1969, 5 fechas de 1971, etc.
-Una versión del GDD se encuentra en este repositorio en GitHub:
-https://github.com/lmptechconsult/Generador_Datos_Desafio_Uno
-
-El desafío puede ser resuelto de tres maneras distintas. 
-Tú eliges cuál es la que más te acomoda entre estos tres niveles:
-
-## Nivel 1: 
-    Crear un programa que recibe, a través de la entrada estándar, un archivo en formato Json con la estructura de la respuesta de servicio (como el ejemplo de arriba) y que entrega a través de la salida estándar, como respuesta, un archivo Json con las fechas faltantes.
-Ejemplo:
-    Se entrega un archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"]
-}
-```
-
-El programa debe responder con archivo con este contenido:
-    
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-}
-```
- 
-El programa se debe ejecutar de la siguiente manera:
-    $ mi_solucion < nombre_archivo_entrada > nombre_archivo_salida
-
-## Nivel 2:
-
-Construir un programa que invoque al servicio REST GDD y escriba como salida un archivo con las fechas, los periodos recibidos y la lista de periodos faltantes.
-Ejemplo:
-
-```
-INVOCACION:
-    $ mi-solucion
-SALIDA (un archivo con el siguiente contenido) :
-      fecha creación: 2018-10-01
-         fecha fin: 2019-04-01
-         fechas recibidas: 2018-10-01, 2018-12-01, 2019-01-01, 2019-04-01
-        fechas faltantes: 2018-11-01, 2019-02-01, 2019-03-01
-```
-
-## Nivel 3:
-
-Implementar un nuevo servicio REST. Este servicio REST debe invocar al servicio GDD y entregar la respuesta en formato JSON con las fechas recibidas y las fechas faltantes.
-Ejemplo de la respuesta que debería entregar:
-
-```json
-{
-    "id": 6,
-    "fechaCreacion": "1969-03-01",
-    "fechaFin": "1970-01-01",
-    "fechas": [
-      "1969-03-01",
-      "1969-05-01",
-      "1969-09-01",
-      "1970-01-01"],
-    "fechasFaltantes": [
-      "1969-04-01",
-      "1969-06-01",
-      "1969-07-01",
-      "1969-08-01",
-      "1969-10-01",
-      "1969-11-01",
-      "1969-12-01"]
-
-}
-```
-
-REQUISITOS:
--   Se pueden implementar las soluciones en cualquier lenguaje y framework. Aunque recomendamos usar: Java(con o sin Spring Boot), Go y Python.
--   La solución debe ser enviada vía un pull request a este repositorio.
--   La solución debe contener un README.md con las instrucciones para compilar e instalar.
--   Puedes implementar cualquiera de los 3 niveles, no es necesario implementar los 3.
--   Hay bonus si usas SWAGGER.
--   Junto con la solución debes entregar un archivo con la entrada y con la salida en formato JSON.
-- Por ultimo en el detalle del commit debes indicar los siguientes datos
-   - Nombre Completo.
-   - Correo Electrónico.
-   - Vía por la que te entérate del desafío. Estas pueden ser: Empresa de outsourcing (indicar cuál), twitter, LinkedIn, etc.
-
-
-NOTA:
-Todos los pull reuqests serán rechazados, esto no quiere decir que ha sido rechazada la solución, sino que es una forma de que otros postulantes no copien tu código.
